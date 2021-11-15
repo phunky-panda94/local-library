@@ -38,4 +38,14 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// connect to MongoDB
+require('dotenv').config();
+const mongoose = require('mongoose');
+const mongoDB = process.env.MONGODB_URL;
+
+mongoose.connect(mongoDB);
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Database connection error:'));
+
 module.exports = app;
