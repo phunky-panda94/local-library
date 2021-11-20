@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const wikiRouter = require('./routes/wiki');
+const catalogRouter = require('./routes/catalog');
 
 const app = express();
 
@@ -19,8 +19,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// add routes to middleware chain
 app.use('/', indexRouter);
-app.use('/wiki', wikiRouter);
+app.use('/catalog', catalogRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
