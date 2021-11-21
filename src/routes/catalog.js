@@ -14,19 +14,19 @@ router.get('/', (req, res, next) => {
 /***  AUTHOR ROUTES ***/
 
 // display create new author form
-router.get('/author/create', authorController.getNewAuthorForm);
+router.get('/authors/create', authorController.getNewAuthorForm);
 
 // create new author
-router.post('/author/create', authorController.createNewAuthor);
+router.post('/authors/create', authorController.createNewAuthor);
 
 // get author details
-router.get('/author/:id', authorController.getAuthorDetails);
+router.get('/authors/:id', authorController.getAuthorDetails);
 
 // delete author
-router.delete('/author/:id', authorController.deleteAuthor);
+router.delete('/authors/:id', authorController.deleteAuthor);
 
 // update author
-router.put('/author/:id', authorController.updateAuthor);
+router.put('/authors/:id', authorController.updateAuthor);
 
 // get list of all authors
 router.get('/authors', authorController.getAllAuthors);

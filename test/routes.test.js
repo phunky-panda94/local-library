@@ -8,27 +8,27 @@ app.use('/', catalog);
 describe('Author routes', () => {
     
     test('GET request for new author form', async () => {
-        const response = await request(app).get('/author/create');
+        const response = await request(app).get('/authors/create');
         expect(response.statusCode).toBe(200);
     });
 
     test('POST request to create new author', async () => {
-        const response = await request(app).post('/author/create');
+        const response = await request(app).post('/authors/create');
         expect(response.statusCode).toBe(200);
     });
 
     test('GET request to get author details', async () => {
-        const response = await request(app).get('/author/1234');
+        const response = await request(app).get('/authors/1234');
         expect(response.statusCode).toBe(200);
     });
 
     test('DELETE request to delete author', async () => {
-        const response = await request(app).delete('/author/1234');
+        const response = await request(app).delete('/authors/1234');
         expect(response.statusCode).toBe(200);
     });
 
     test('PUT request to update author', async () => {
-        const response = await request(app).put('/author/1234');
+        const response = await request(app).put('/authors/1234');
         expect(response.statusCode).toBe(200);
     });
 
