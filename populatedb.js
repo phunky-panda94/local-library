@@ -5,9 +5,9 @@ console.log('This script populates some test books, authors, genres and bookinst
 // Get arguments passed on command line
 const userArgs = process.argv.slice(2);
 const async = require('async');
-const Author = require('./models/author');
-const Book = require('./models/book');
-const BookInstance = require('./models/bookInstance');
+const Author = require('./src/models/author');
+const Book = require('./src/models/book');
+const BookInstance = require('./src/models/bookInstance');
 
 const mongoose = require('mongoose');
 const mongoDB = userArgs[0];

@@ -34,10 +34,10 @@ router.get('/authors', authorController.getAllAuthors);
 /*** BOOK ROUTES ***/
 
 // display create new book form
-router.get('/book/create', bookController.getNewBookForm);
+router.get('/books/create', bookController.getNewBookForm);
 
 // create new book
-router.post('/book/create', bookController.createNewBook);
+router.post('/books/create', bookController.createNewBook);
 
 // get book details
 router.get('/books/:id', bookController.getBookDetails);
@@ -54,21 +54,21 @@ router.get('/books', bookController.getAllBooks);
 /*** BOOK INSTANCE ROUTES ***/
 
  // display create new book instance form
-router.get('/bookInstance/create', bookInstanceController.getNewBookInstanceForm);
+router.get('/books/:id/bookInstances/create', bookInstanceController.getNewBookInstanceForm);
 
  // create new book instance
-router.post('/bookInstance/create', bookInstanceController.createNewBookInstance);
+router.post('/books/:id/bookInstances/create', bookInstanceController.createNewBookInstance);
 
  // get book instance details
-router.get('/bookInstance/:id', bookInstanceController.getBookInstanceDetails);
+router.get('/books/:id/bookInstances/:id', bookInstanceController.getBookInstanceDetails);
 
  // delete book instance
-router.delete('/bookInstance/:id', bookInstanceController.deleteBookInstance);
+router.delete('/books/:id/bookInstances/:id', bookInstanceController.deleteBookInstance);
 
  // update book instance
-router.put('/bookInstance/:id', bookInstanceController.updateBookInstance);
+router.put('/books/:id/bookInstances/:id', bookInstanceController.updateBookInstance);
 
 // get list of all book instances
-router.get('/bookInstances')
+router.get('/books/:id/bookInstances', bookInstanceController.getAllBookInstances);
 
 module.exports = router;
