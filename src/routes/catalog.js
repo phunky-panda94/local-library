@@ -8,7 +8,7 @@ const bookInstanceController = require('../controllers/bookInstanceController');
 
 // catalog home page
 router.get('/', (req, res, next) => {
-    res.send('Catalog home page');
+    res.render('index', {title: 'Home', error: 'error', data: 'results'});
 })
 
 /***  AUTHOR ROUTES ***/
