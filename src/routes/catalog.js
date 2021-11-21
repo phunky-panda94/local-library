@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 // import controllers
+const homeController = require('../controllers/homeController');
 const authorController = require('../controllers/authorController');
 const bookController = require('../controllers/bookController');
 const bookInstanceController = require('../controllers/bookInstanceController');
 
 // catalog home page
-router.get('/', (req, res, next) => {
-    res.render('index', {title: 'Home', error: 'error', data: 'results'});
-})
+router.get('/', homeController.index);
 
 /***  AUTHOR ROUTES ***/
 
