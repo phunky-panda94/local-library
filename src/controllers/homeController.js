@@ -13,7 +13,7 @@ exports.index = (req, res) => {
             Author.countDocuments({}, callback);
         }
     }, (err, results) => {
-        res.render('index', { title: 'Home', error: err, data: results });
+        res.render('index', { error: err, data: results });
     });
 
 }

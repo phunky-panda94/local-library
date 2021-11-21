@@ -1,0 +1,17 @@
+extend layout 
+
+block content 
+    h1= title 
+
+    table
+        tr 
+            th Title 
+            th Author 
+        each book in books 
+            tr 
+                td 
+                    a(href=book.url) #{book.title}
+                td 
+                    a(href=book.author.url) #{book.author.fullName}
+        else 
+            li No books in the current catalog

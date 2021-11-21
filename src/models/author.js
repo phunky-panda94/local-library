@@ -16,7 +16,7 @@ AuthorSchema.virtual('age').get(function() {
     } else {
         age = Date.now() - new Date(JSON.parse(this.dateOfBirth));
     }
-
+    
     return age;
 })
 

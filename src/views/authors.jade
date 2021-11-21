@@ -1,0 +1,20 @@
+extend layout 
+
+block content 
+    h1= title 
+
+    table
+        tr 
+            th Author 
+            th Age 
+            th Number of Publications
+        each author in authors 
+            tr 
+                td 
+                    p=author.fullName
+                td
+                    p=author.dateOfBirth
+                td
+                    p='0'
+        else 
+            li No authors in the current catalog

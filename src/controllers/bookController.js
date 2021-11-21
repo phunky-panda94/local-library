@@ -1,8 +1,22 @@
 const Book = require('../models/book');
+const BookInstance = require('../models/bookInstance');
 
 // display list of all books
 exports.getAllBooks = (req, res) => {
-    res.send('List of all books');
+
+    Book.find({}, 'title author')
+        .sort({ title: 'asc'})
+        .populate('author')
+        .exec((err, books) => {
+
+            if (err) {
+                return next(err)
+            } 
+
+            res.render('books', { title: 'All Books', books: books })
+
+        })
+
 }
 
 // display book details

@@ -2,7 +2,16 @@ const Author = require('../models/author');
 
 // display list of authors
 exports.getAllAuthors = (req, res) => {
-    res.send('List of all authors');
+    
+    Author.find({}, 'firstName lastName dateOfBirth dateOfDeath')
+        .sort({ lastName: 'asc' })
+        .exec((err, authors) => {
+            if (err) {
+                return next(err);
+            }
+            res.render('authors', { title: 'All Authors', authors: authors });
+        })
+
 };
 
 // display author detail page
