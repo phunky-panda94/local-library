@@ -118,7 +118,7 @@ function createAuthors(cb) {
           authorCreate('Isaac', 'Asimov', '1920-01-02', '1992-04-06', callback);
         },
         (callback) => {
-          authorCreate('Bob', 'Billings', false, false, callback);
+          authorCreate('Bob', 'Billings', '1925-03-07', false, callback);
         },
         (callback) => {
           authorCreate('Jim', 'Jones', '1971-12-16', false, callback);

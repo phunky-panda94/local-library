@@ -9,15 +9,7 @@ const AuthorSchema = new Schema({
 })
 
 AuthorSchema.virtual('age').get(function() {
-    let age;
-
-    if (this.dateOfDeath) {
-        age = new Date(JSON.parse(this.dateOfDeath)) - new Date(JSON.parse(this.dateOfBirth));
-    } else {
-        age = Date.now() - new Date(JSON.parse(this.dateOfBirth));
-    }
-    
-    return age;
+    return calculateAge(this.dateOfBirth, this.dateOfDeath);
 })
 
 AuthorSchema.virtual('fullName').get(function() {
@@ -28,4 +20,19 @@ AuthorSchema.virtual('url').get(function() {
     return `/catalog/author/${this._id}`;
 });
 
+function calculateAge(dateOfBirth, dateOfDeath) {
+
+    let age;
+    
+    if (dateOfDeath) {
+        age = new Date(dateOfDeath) - new Date(dateOfBirth);
+    } else {
+        age = Date.now() - new Date(dateOfBirth);
+    }
+    
+    return Math.floor(age / (1000 * 60 * 60 * 24 * 365));
+
+}
+
 module.exports = mongoose.model('Author', AuthorSchema);
+module.exports.calculateAge = calculateAge;
