@@ -45,3 +45,12 @@ exports.deleteBook = (req, res) => {
 exports.updateBook = (req, res) => {
     res.send(`Updating book ${req.params.id}`);
 }
+
+// display available genres
+exports.getGenres = (req, res) => {
+    res.send('List of all genres');
+}
+
+exports.getGenreBooks = (req, res) => {
+    res.send(`List of books for a ${req.params.type}`);
+}

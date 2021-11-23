@@ -5,7 +5,7 @@ const app = express();
 
 app.use('/', catalog);
 
-describe('Author routes', () => {
+describe.skip('Author routes', () => {
     
     test('GET request for new author form', async () => {
         const response = await request(app).get('/authors/create');
@@ -39,7 +39,7 @@ describe('Author routes', () => {
     
 });
 
-describe('Book routes', () => {
+describe.skip('Book routes', () => {
 
     test('GET request for new book form', async () => {
         const response = await request(app).get('/books/create');
@@ -106,3 +106,17 @@ describe('Book instance routes', () => {
     })
 
 });
+
+describe('Genre routes', () => {
+
+    test('GET request for all books of a genre', async () => {
+        const response = await request(app).get('/genres/:genre/books');
+        expect(response.statusCode).toBe(200);
+    })
+
+    test('GET request for genre', async () => {
+        const response = await request(app).get('/genres');
+        expect(response.statusCode).toBe(200);
+    })
+
+})

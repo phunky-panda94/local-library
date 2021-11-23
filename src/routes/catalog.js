@@ -70,4 +70,10 @@ router.put('/books/:id/bookInstances/:id', bookInstanceController.updateBookInst
 // get list of all book instances
 router.get('/books/:id/bookInstances', bookInstanceController.getAllBookInstances);
 
+/*** GENRE ROUTES ***/
+
+router.get('/genres/:type/books', bookController.getGenreBooks);
+
+router.get('/genres', bookController.getGenres);
+
 module.exports = router;
