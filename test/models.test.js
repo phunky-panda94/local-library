@@ -1,4 +1,5 @@
 const { calculateAge } = require('../src/models/author');
+const { formatDate } = require('../src/models/bookInstance');
 
 describe('calculateAge', () => {
 
@@ -30,3 +31,17 @@ describe('calculateAge', () => {
     });
 
 })
+
+describe('formattedDate', () => {
+
+    test('returns formatted date of date object', () => {
+
+        let date = new Date('1973-06-06T00:00:00.000Z');
+
+        let formattedDate = formatDate(date);
+
+        expect(formattedDate).toBe('Jun 6, 1973');
+
+    });
+
+});

@@ -4,6 +4,8 @@ const BookInstance = require('../models/bookInstance');
 // display list of all books
 exports.getAllBooks = (req, res) => {
 
+    // TODO: add number of available copies to query
+
     Book.find({}, 'title author')
         .sort({ title: 'asc'})
         .populate('author')
