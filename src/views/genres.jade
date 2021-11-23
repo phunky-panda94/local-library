@@ -1,0 +1,11 @@
+extend layout 
+
+block content 
+    h1= title 
+
+    each genre in genres 
+        li
+            -var url=`/catalog/genres/${genre}/books`
+            a(href=url) #{genre}
+    else 
+        li No genres in the current catalog

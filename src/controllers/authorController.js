@@ -3,7 +3,7 @@ const Author = require('../models/author');
 // display list of authors
 exports.getAllAuthors = (req, res) => {
     
-    // TODO: add number of publications ot query
+    // TODO: add number of publications to query
 
     Author.find({}, 'firstName lastName dateOfBirth dateOfDeath')
         .sort({ lastName: 'asc' })

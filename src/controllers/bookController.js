@@ -48,9 +48,29 @@ exports.updateBook = (req, res) => {
 
 // display available genres
 exports.getGenres = (req, res) => {
-    res.send('List of all genres');
+
+    Book.find()
+        .distinct('genre', (err, genres) => {
+
+            if (err) {
+                return next(err);
+            }
+
+            res.render('genres', { title: 'All genres', genres: genres });
+        })
+
 }
 
 exports.getGenreBooks = (req, res) => {
-    res.send(`List of books for a ${req.params.type}`);
+
+    Book.find({ genre: `${req.params.type}` }, 'title author summary')
+        .sort({ title: 'asc'})
+        .populate('author')
+        .exec((err, books) => {
+            if (err) {
+                return next(err);
+            }
+            res.render('genreBooks', { title: `${req.params.type} books`, books: books });
+        })    
+        
 }

@@ -7,12 +7,23 @@ a {
     color: #00B7FF;
 }
 
+table {
+    height: 100%;
+    width: 100%;
+}
+
 th {
     font-size: 16px;
 }
 
 th, td, tr {
     padding: 5px;
+    width: 33%;
+}
+
+tr + tr {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .sidebar-nav {
