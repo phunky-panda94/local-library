@@ -7,11 +7,13 @@ block content
         tr 
             th Title 
             th Author 
+            th Copies Available
         each book in books 
             tr 
                 td 
                     a(href=book.url) #{book.title}
                 td 
                     a(href=book.author.url) #{book.author.fullName}
+                td 0
         else 
             li No books in the current catalog

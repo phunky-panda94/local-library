@@ -1,9 +1,5 @@
+const Book = require('../models/book');
 const BookInstance = require('../models/bookInstance');
-
-// display list of all BookInstances
-exports.getAllBookInstances = (req, res) => {
-    res.send('List of all BookInstances');
-}
 
 // display BookInstance details
 exports.getBookInstanceDetails = (req, res) => {

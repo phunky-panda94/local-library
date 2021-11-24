@@ -1,3 +1,4 @@
+const async = require('async');
 const Book = require('../models/book');
 const BookInstance = require('../models/bookInstance');
 
@@ -23,7 +24,30 @@ exports.getAllBooks = (req, res) => {
 
 // display book details
 exports.getBookDetails = (req, res) => {
-    res.send(`Book details for ${req.params.id}`);
+
+    async.parallel({
+        book: (callback) => {
+            Book.findById(req.params.id)
+                .populate('author')
+                .exec(callback);
+        },
+        bookInstances: (callback) => {
+            BookInstance.find({ book: req.params.id })
+                .exec(callback);
+        }
+    }, (err, results) => {
+        if (err) {
+            return next(err);
+        }
+
+        res.render('bookDetails', {
+            title: results.book.title,
+            book: results.book,
+            bookInstances: results.bookInstances
+        })
+
+    });
+
 }
 
 // display create new book form

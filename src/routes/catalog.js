@@ -53,25 +53,21 @@ router.get('/books', bookController.getAllBooks);
 /*** BOOK INSTANCE ROUTES ***/
 
  // display create new book instance form
-router.get('/books/:id/bookInstances/create', bookInstanceController.getNewBookInstanceForm);
+router.get('/books/:bookId/bookInstances/create', bookInstanceController.getNewBookInstanceForm);
 
  // create new book instance
-router.post('/books/:id/bookInstances/create', bookInstanceController.createNewBookInstance);
+router.post('/books/:bookId/bookInstances/create', bookInstanceController.createNewBookInstance);
 
  // get book instance details
-router.get('/books/:id/bookInstances/:id', bookInstanceController.getBookInstanceDetails);
+router.get('/books/:bookId/bookInstances/:instanceId', bookInstanceController.getBookInstanceDetails);
 
  // delete book instance
-router.delete('/books/:id/bookInstances/:id', bookInstanceController.deleteBookInstance);
+router.delete('/books/:bookId/bookInstances/:instanceId', bookInstanceController.deleteBookInstance);
 
  // update book instance
-router.put('/books/:id/bookInstances/:id', bookInstanceController.updateBookInstance);
-
-// get list of all book instances
-router.get('/books/:id/bookInstances', bookInstanceController.getAllBookInstances);
+router.put('/books/:bookId/bookInstances/:instanceId', bookInstanceController.updateBookInstance);
 
 /*** GENRE ROUTES ***/
-
 router.get('/genres/:type/books', bookController.getGenreBooks);
 
 router.get('/genres', bookController.getGenres);

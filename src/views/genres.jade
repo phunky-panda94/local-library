@@ -4,8 +4,8 @@ block content
     h1= title 
 
     each genre in genres 
-        li
+        h5
             -var url=`/catalog/genres/${genre}/books`
             a(href=url) #{genre}
     else 
-        li No genres in the current catalog
+        h5 No genres in the current catalog

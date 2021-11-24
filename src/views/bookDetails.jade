@@ -1,0 +1,27 @@
+extend layout 
+
+block content 
+    h1= title 
+
+    h5 Summary
+    p=book.summary
+
+    h5 Copies
+    
+    table
+        if bookInstances.length > 0
+            tr 
+                th Imprint
+                th Type 
+                th Status 
+            each bookInstance in bookInstances
+                tr
+                    td=bookInstance.imprint
+                    td=bookInstance.type
+                    
+                    if bookInstance.status === 'Borrowed'
+                        td Due Back on #{bookInstance.formattedDueDate}
+                    else
+                        td=bookInstance.status
+        else 
+            p No copies of this book in the current catalog

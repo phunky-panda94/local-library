@@ -221,7 +221,7 @@ function createBookInstances(cb) {
                 ' Gollancz, 2011.', 
                 'Paperback',
                 'Borrowed',
-                false,
+                '2021-12-15',
                 callback
             );
         },
@@ -281,7 +281,7 @@ function createBookInstances(cb) {
                 'New York, NY Tom Doherty Associates, LLC, 2015.', 
                 'Hardcover', 
                 'Borrowed', 
-                false, 
+                '2021-12-23', 
                 callback
             );
         },
@@ -291,7 +291,7 @@ function createBookInstances(cb) {
                 'New York, NY Tom Doherty Associates, LLC, 2015.', 
                 'Paperback', 
                 'Borrowed',
-                false, 
+                '2022-01-15', 
                 callback
             );
         },
