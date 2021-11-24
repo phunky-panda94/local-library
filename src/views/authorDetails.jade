@@ -1,0 +1,23 @@
+extend layout 
+
+block content 
+    h1= title 
+
+    h5 Books
+    
+    table
+        if books.length > 0
+            tr 
+                th Title 
+                th Genre
+                th Summary 
+            each book in books
+                tr
+                    td
+                        a(href=book.url) #{book.title}
+                    td
+                        -var url=`/catalog/genres/${book.genre}/books`
+                        a(href=url) #{book.genre}
+                    td=book.summary
+        else 
+            p No books for this author in the current catalog

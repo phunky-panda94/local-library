@@ -11,7 +11,7 @@ block content
         each author in authors 
             tr 
                 td 
-                    p=author.fullName
+                    a(href=author.url) #{author.fullName}
                 td
                     p=author.age
                 td
