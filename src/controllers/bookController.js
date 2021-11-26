@@ -1,6 +1,8 @@
 const async = require('async');
+const Author = require('../models/author');
 const Book = require('../models/book');
 const BookInstance = require('../models/bookInstance');
+const { body, validationResult } = require('express-validator');
 
 // display list of all books
 exports.getAllBooks = (req, res) => {
@@ -52,13 +54,96 @@ exports.getBookDetails = (req, res) => {
 
 // display create new book form
 exports.getNewBookForm = (req, res) => {
-    res.send('New book form');
+
+    async.parallel({
+        authors: (callback) => {
+            Author.find({}, 'firstName lastName')
+                .sort({ lastName: 'asc'})
+                .exec(callback);
+        },
+        genres: (callback) => {
+            Book.find()
+                .distinct('genre')
+                .exec(callback);
+        }
+    }, (err, results) => {
+        if (err) return next(err);
+        
+        res.render('bookForm', {
+            authors: results.authors,
+            genres: results.genres
+        });
+
+    });
+    
 }
 
 // handle create new book
-exports.createNewBook = (req, res) => {
-    res.send('Creating new book');
-}
+exports.createNewBook = [
+
+    // validate and sanitise input
+    body('title').trim().isLength({ min: 3 }).escape().withMessage('Title must at least be 3 characters long'),
+    body('author').isMongoId().withMessage('Author must be selected'),
+    body('genre').trim().isLength({ min: 3 }).escape().withMessage('Genre must be provided'),
+    body('isbn').trim().isISBN().escape().withMessage('A valid ISBN must be provided'),
+
+    // process input
+    (req, res, next) => {
+
+        // return any errors
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            // re-render form
+            async.parallel({
+                authors: (callback) => {
+                    Author.find({}, 'firstName lastName')
+                        .sort({ lastName: 'asc'})
+                        .exec(callback);
+                },
+                genres: (callback) => {
+                    Book.find()
+                        .distinct('genre')
+                        .exec(callback);
+                }
+            }, (err, results) => {
+                if (err) return next(err);
+                console.log(req.body.title);
+                console.log(req.body.genre);
+                console.log(req.body.summary);
+                res.render('bookForm', {
+                    title: req.body.title,
+                    selectedAuthor: req.body.author,
+                    authors: results.authors,
+                    selectedGenre: req.body.genre,
+                    genres: results.genres,
+                    isbn: req.body.isbn,
+                    summary: req.body.summary,
+                    errors: errors.array()
+                });
+        
+            });
+                
+        } else {
+            // save new book
+            let book = new Book({
+                title: req.body.title,
+                author: req.body.author,
+                genre: req.body.genre,
+                summary: req.body.summary,
+                isbn: req.body.isbn,
+            })
+
+            book.save((err) => {
+                if (err) return next(err);
+                res.redirect(book.url);
+            })
+
+        }
+
+    }
+
+];
 
 // handle delete book 
 exports.deleteBook = (req, res) => {

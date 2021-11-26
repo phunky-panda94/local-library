@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1 Add new book
+
+    form(method='POST' action='/catalog/books/create')
+        label(for='title') Title:
+        input.form-control(type='text' placeholder='Provide a title' name='title' required='true' value=(title == undefined ? '' : title))
+        label(for='author') Author:
+        select.form-control(type='select' name='author' required='true')
+            option(value='' selected=(selectedAuthor == undefined ? 'true' : 'false') disabled='true') Select an author
+            for author in authors
+                if selectedAuthor != undefined && selectedAuthor == author._id 
+                    option(value=author._id selected) #{author.fullName}
+                else
+                    option(value=author._id) #{author.fullName}
+        label(for='genre') Genre:
+        input.form-control(list='genres' name="genre" placeholder='Select or provide a genre' value=(selectedGenre == undefined ? '' : selectedGenre))
+        datalist(id='genres')
+            for genre in genres
+                option(value=genre) 
+        label(for='isbn') ISBN:
+        input.form-control(type='text' placeholder='Provide an ISBN' name='isbn' required='true' value=(isbn == undefined ? '' : isbn))
+        label(for='summary') Summary: 
+        textarea.form-control(name='summary' placeholder='Provide a summary') #{summary == undefined ? '' : summary}
+        div.buttons
+            button.btn.btn-primary(type='submit') Submit
+    if errors
+        ul
+            for error in errors
+                li.error= error.msg
