@@ -6,7 +6,6 @@ const Book = require('../models/book');
 exports.getAllAuthors = (req, res) => {
     
     // TODO: add number of publications to query
-
     Author.find({}, 'firstName lastName dateOfBirth dateOfDeath')
         .sort({ lastName: 'asc' })
         .exec((err, authors) => {
