@@ -8,6 +8,7 @@ block content
             th Author 
             th Age 
             th Number of Publications
+            th
         each author in authors 
             tr 
                 td 
@@ -16,5 +17,9 @@ block content
                     p=author.age
                 td
                     p='0'
+                td
+                    -var deleteUrl = `/authors/${author._id}` 
+                    form(action=deleteUrl method='DELETE')
+                        button.btn.btn-danger(type='submit') Delete
         else 
             li No authors in the current catalog

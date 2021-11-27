@@ -145,12 +145,12 @@ exports.createNewBook = [
 
 ];
 
-// handle delete book 
+// TODO: handle delete book 
 exports.deleteBook = (req, res) => {
     res.send(`Deleting book ${req.params.id}`);
 }
 
-// handle update book
+// TODO: handle update book
 exports.updateBook = (req, res) => {
     res.send(`Updating book ${req.params.id}`);
 }

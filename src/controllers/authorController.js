@@ -44,7 +44,7 @@ exports.getAuthorDetails = (req, res) => {
 
 }
 
-// display create new author form
+// TODO: display create new author form
 exports.getNewAuthorForm = (req, res) => {
     res.render('authorForm', { title: 'Add new author' });
 }
@@ -92,12 +92,12 @@ exports.createNewAuthor = [
 
 ];
 
-// handle delete author
+// TODO: handle delete author
 exports.deleteAuthor = (req, res) => {
     res.send(`Delete author ${req.params.id}`);
 }
 
-// handle update author
-exports. updateAuthor = (req, res) => {
+// TODO: handle update author
+exports.updateAuthor = (req, res) => {
     res.send(`Update author ${req.params.id}`);
 }

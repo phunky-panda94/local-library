@@ -7,6 +7,11 @@ a {
     color: #00B7FF;
 }
 
+button > a, button > a:hover {
+    color: white;
+    text-decoration: none;
+}
+
 .buttons {
     display: flex;
     justify-content: flex-end;
