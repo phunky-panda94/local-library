@@ -18,7 +18,7 @@ block content
                 td
                     p='0'
                 td
-                    -var deleteUrl = `/authors/${author._id}/delete` 
+                    -var deleteUrl = `authors/${author._id}/delete` 
                     form(action=deleteUrl method='POST')
                         button.btn.btn-danger(type='submit') Delete
         else 

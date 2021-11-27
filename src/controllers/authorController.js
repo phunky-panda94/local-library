@@ -92,13 +92,15 @@ exports.createNewAuthor = [
 
 ];
 
-// TODO: handle delete author
+// handle delete author
 exports.deleteAuthor = (req, res) => {
-    res.send(`Delete author ${req.params.id}`);
-
+    
     // delete author
-
-    // 
+    Author.deleteOne({ _id: req.params.id }, (err) => {
+        if (err) return next(err);
+        // redirect to authors page
+        res.redirect('/catalog/authors'); 
+    })
 
 }
 
