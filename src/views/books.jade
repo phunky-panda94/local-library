@@ -8,6 +8,7 @@ block content
             th Title 
             th Author 
             th Copies Available
+            th
         each book in books 
             tr 
                 td 
@@ -15,5 +16,9 @@ block content
                 td 
                     a(href=book.author.url) #{book.author.fullName}
                 td 0
+                td
+                    -var deleteUrl = `/catalog/books/${book._id}/delete`
+                    form(action=deleteUrl method='POST')
+                        button.btn.btn-danger Delete
         else 
             li No books in the current catalog

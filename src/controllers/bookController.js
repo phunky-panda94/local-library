@@ -145,9 +145,12 @@ exports.createNewBook = [
 
 ];
 
-// TODO: handle delete book 
+// handle delete book 
 exports.deleteBook = (req, res) => {
-    res.send(`Deleting book ${req.params.id}`);
+    Book.deleteOne({ _id: req.params.id }, (err) => {
+        if (err) return next(err);
+        res.redirect('/catalog/books');
+    })
 }
 
 // TODO: handle update book
