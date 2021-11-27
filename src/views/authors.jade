@@ -18,8 +18,8 @@ block content
                 td
                     p='0'
                 td
-                    -var deleteUrl = `/authors/${author._id}` 
-                    form(action=deleteUrl method='DELETE')
+                    -var deleteUrl = `/authors/${author._id}/delete` 
+                    form(action=deleteUrl method='POST')
                         button.btn.btn-danger(type='submit') Delete
         else 
             li No authors in the current catalog

@@ -95,6 +95,11 @@ exports.createNewAuthor = [
 // TODO: handle delete author
 exports.deleteAuthor = (req, res) => {
     res.send(`Delete author ${req.params.id}`);
+
+    // delete author
+
+    // 
+
 }
 
 // TODO: handle update author
