@@ -2,6 +2,7 @@ const async = require('async');
 const Author = require('../models/author');
 const Book = require('../models/book');
 const { body, validationResult } = require('express-validator');
+const book = require('../models/book');
 
 // display list of authors
 exports.getAllAuthors = (req, res) => {
@@ -95,12 +96,21 @@ exports.createNewAuthor = [
 // handle delete author
 exports.deleteAuthor = (req, res) => {
     
+    // TODO: delete all books and book instances belonging to the author
+    Book.find({ author: req.params.id })
+        .exec((err, results) => {
+            results.forEach(result => {
+                console.log(result._id);
+            })
+        })
+
+    res.redirect('/catalog/authors'); 
     // delete author
-    Author.deleteOne({ _id: req.params.id }, (err) => {
-        if (err) return next(err);
-        // redirect to authors page
-        res.redirect('/catalog/authors'); 
-    })
+    // Author.deleteOne({ _id: req.params.id }, (err) => {
+    //     if (err) return next(err);
+    //     // redirect to authors page
+    //     res.redirect('/catalog/authors'); 
+    // })
 
 }
 
